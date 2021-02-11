@@ -2,12 +2,12 @@ package IOrderBiz
 
 import (
 	"context"
-	cd "github.com/goclub/project-seckilling/internal/cache_data"
+	md "github.com/goclub/project-seckilling/internal/memory_data"
 	"github.com/goclub/project-seckilling/internal/persistence_data"
 )
 
 type Interface interface {
-	ConsumerPlaceOrder(ctx context.Context, data ConsumerPlaceOrder) (ticketID cd.IDTicket, reject error)
+	ConsumerPlaceOrder(ctx context.Context, data ConsumerPlaceOrder) (ticketID md.IDTicket, reject error)
 	ConsumerQueryTicket(ctx context.Context, data ConsumerQueryTicket) (reply ConsumerQueryTicketReply, reject error)
 	ConsumerOrderList(ctx context.Context, data ConsumerOrderList)(orderList ConsumerOrderListReply, reject error)
 	JobCancelUnpaidOrder(ctx context.Context) (reject error)
@@ -18,7 +18,7 @@ type ConsumerPlaceOrder struct {
 	GoodsID pd.IDGoods
 }
 type ConsumerQueryTicket struct {
-	TicketID cd.IDTicket
+	TicketID md.IDTicket
 }
 type ConsumerQueryTicketReply struct {
 	Status QueryTicketReplyStatus
@@ -47,7 +47,7 @@ type ConsumerOrderListReply struct {
 }
 type OrderListReplyItem struct {
 	OrderID pd.IDOrder
-	AccountID pd.IDConsumer
+	ConsumerID pd.IDConsumer
 	GoodsID pd.IDGoods
 	OrderStatus OrderListReplyItemStatus
 }

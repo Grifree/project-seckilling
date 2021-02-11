@@ -3,6 +3,7 @@ package IGoodsBiz
 import (
 	"context"
 	"github.com/goclub/project-seckilling/internal/persistence_data"
+	xtime "github.com/goclub/time"
 	"time"
 )
 
@@ -17,6 +18,8 @@ type MerchantGoodsCreate struct {
 	Title string
 	Price uint64
 	Description string
+	StartTime xtime.ChinaTime
+	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
 }
 type MerchantGoodsUpdate struct {
@@ -24,6 +27,8 @@ type MerchantGoodsUpdate struct {
 	Title string
 	Price uint64
 	Description string
+	StartTime xtime.ChinaTime
+	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
 }
 type MerchantGoodsList struct {
@@ -39,6 +44,8 @@ type MerchantGoodsListReplyItem struct {
 	Title string
 	Price uint64
 	Description string
+	StartTime xtime.ChinaTime
+	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
 	CreateAt time.Time
 	UpdateAt time.Time
@@ -48,6 +55,8 @@ type MerchantGoodsReply struct {
 	Title string
 	Price uint64
 	Description string
+	StartTime xtime.ChinaTime
+	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
 	CreateAt time.Time
 	UpdateAt time.Time
