@@ -1,4 +1,4 @@
-package IConsumerBiz
+package IMerchantBiz
 
 import (
 	"context"
@@ -14,6 +14,6 @@ type ConsumerSignIn struct {
 
 func (v ConsumerSignIn) VD(r *vd.Rule) {
 	r.String(v.Name, vd.StringSpec{
-		Name: "用户名",
+		Name: "商户名",
 	})
 }

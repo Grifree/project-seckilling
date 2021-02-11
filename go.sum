@@ -23,6 +23,8 @@ github.com/goclub/sql v0.0.0-20210206054144-74fce2e11dc1 h1:FFgxff798ZLTxET+qmY1
 github.com/goclub/sql v0.0.0-20210206054144-74fce2e11dc1/go.mod h1:yPBbcUEcu6NXLnOICcAx2yh6jmyoAEfnLUinJTZm9k8=
 github.com/goclub/sql v0.0.0-20210211040252-fd379bb7ae82 h1:ezfkAErG6PUhm3syMPUKPA0r3Jki8HAuvHN3JGySN9E=
 github.com/goclub/sql v0.0.0-20210211040252-fd379bb7ae82/go.mod h1:yPBbcUEcu6NXLnOICcAx2yh6jmyoAEfnLUinJTZm9k8=
+github.com/goclub/test v0.0.0-20210209034415-7bb016d51915 h1:rbWHKEXnpuFZbCk4yFHJbM7JxP19eVHQygmMlkXuUp8=
+github.com/goclub/test v0.0.0-20210209034415-7bb016d51915/go.mod h1:iaoSHMK0wKp8Ja5PL/hHKJDvx1nBQnn0tV1cvMX4hMw=
 github.com/goclub/time v0.0.0-20201218085221-ad01cef803d3 h1:70UivKcr6+JfYuUz/ra7e4z/4XeunahtGtqxoz3CjYA=
 github.com/goclub/time v0.0.0-20201218085221-ad01cef803d3/go.mod h1:ubQiIzvf3qBw+a+J5563Rpf3yq2UvsVQzESGdg1rR4A=
 github.com/goclub/validator v0.0.0-20210211052809-9b6db9b065a2 h1:71kW8byaK476nUzEtjYWIIy394ZP/q6OIZfAtAtZTGk=
@@ -31,6 +33,8 @@ github.com/google/go-querystring v1.0.0/go.mod h1:odCYkC5MyYFN7vkCjXpyrEuKhc/BUO
 github.com/google/uuid v1.1.2/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/google/uuid v1.1.4 h1:0ecGp3skIrHWPNGPJDaBIghfA6Sp7Ruo2Io8eLKzWm0=
 github.com/google/uuid v1.1.4/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
+github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
 github.com/gorilla/securecookie v1.1.1/go.mod h1:ra0sb63/xPlUeL+yeDciTfxMRAA+MP+HVt/4epWDjd4=
 github.com/gorilla/sessions v1.2.1/go.mod h1:dk2InVEVJ0sfLlnXv9EAgkf6ecYs/i80K/zI+bUmuGM=
@@ -88,6 +92,8 @@ github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXf
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
+github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/urfave/cli/v2 v2.3.0/go.mod h1:LJmUH05zAU44vOAcrfzZQKsZbVcdbOG8rtL3/XcUArI=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190620200207-3b0461eec859/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=

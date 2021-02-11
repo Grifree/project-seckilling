@@ -3,6 +3,7 @@ package pd
 import sq "github.com/goclub/sql"
 
 type IDConsumer string
+func (id IDConsumer) String() string { return string(id) }
 type TableConsumer struct {
 	sq.SoftDeleteDeletedAt
 }
