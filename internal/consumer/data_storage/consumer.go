@@ -19,7 +19,7 @@ func (dep DataStorage) ConsumerHasConsumerByName(ctx context.Context, name strin
 	return
 }
 
-func (dep DataStorage)  ConsumerCreateConsumer(ctx context.Context, data IConsumerDataStorage.ConsumerCreateConsumer) (consumerID pd.IDConsumer, reject error) {
+func (dep DataStorage) ConsumerCreateConsumer(ctx context.Context, data IConsumerDataStorage.ConsumerCreateConsumer) (consumerID pd.IDConsumer, reject error) {
 	consumer := pd.Consumer{
 		Name: data.Name,
 	}
@@ -27,4 +27,16 @@ func (dep DataStorage)  ConsumerCreateConsumer(ctx context.Context, data IConsum
 		return
 	}
 	return consumer.ID, nil
+}
+
+func (dep DataStorage) ConsumerHasConsumerByID(ctx context.Context, id pd.IDConsumer) (has bool, reject error) {
+	consumerCol := pd.Consumer{}.Column()
+	has, reject = dep.rds.Main.Has(ctx, sq.QB{
+		Table: pd.TableConsumer{},
+		Where: sq.And(consumerCol.ID, sq.Equal(id)),
+		CheckSQL: []string{"SELECT 1 FROM `consumer` WHERE `id` = ? AND `deleted_at` IS NULL LIMIT ?"},
+	}) ; if reject != nil {
+		return
+	}
+	return
 }

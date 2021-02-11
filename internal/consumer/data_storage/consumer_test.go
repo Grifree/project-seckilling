@@ -71,3 +71,29 @@ func TestDataStorage_ConsumerCreateConsumer(t *testing.T) {
 		assert.Equal(t, consumer.CreatedAt.Sub(time.Now()).Seconds() < 2, true)
 	}
 }
+
+func TestDataStorage_ConsumerHasConsumerByID(t *testing.T) {
+	namespace := "TestDataStorage_ConsumerHasConsumerByID:"
+	ctx := context.TODO()
+	rds := connectRDS.TestRDS(t)
+	ds := TestDataStorage(t)
+	// 清除数据
+	_, err := rds.Main.ClearTestData(ctx,sq.QB{
+		Table: pd.TableConsumer{},
+		Where: sq.And(pd.Consumer{}.Column().Name, sq.LikeLeft(namespace)),
+	}) ; if err != nil {panic(err)}
+	// 查询 nimoc
+	has, reject := ds.ConsumerHasConsumerByName(ctx, namespace + "nimoc")
+	assert.Equal(t, has, false)
+	assert.Equal(t, reject, nil)
+	// 插入数据
+	consumer := pd.Consumer{
+		Name: namespace + ":nimoc",
+	}
+	err = rds.Main.InsertModel(ctx, &consumer)
+	assert.NoError(t, err)
+	// 查询 nimoc
+	has, reject = ds.ConsumerHasConsumerByID(ctx, consumer.ID)
+	assert.Equal(t, has, true)
+	assert.Equal(t, reject, nil)
+}
