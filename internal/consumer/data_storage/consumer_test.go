@@ -1,9 +1,9 @@
-package consumerDataStorage
+package consumerDS
 
 import (
 	"context"
 	connectRDS "github.com/goclub/project-seckilling/internal/connect_rds"
-	IConsumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
+	IConsumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	sq "github.com/goclub/sql"
 	xtest "github.com/goclub/test"
@@ -12,11 +12,11 @@ import (
 	"time"
 )
 
-func TestDataStorage_ConsumerHasConsumerByName(t *testing.T) {
-	namespace := "TestDataStorage_ConsumerHasConsumerByName:" + xtest.String(10)
+func TestDS_ConsumerHasConsumerByName(t *testing.T) {
+	namespace := "TestDS_ConsumerHasConsumerByName:" + xtest.String(10)
 	ctx := context.TODO()
 	rds := connectRDS.TestRDS(t)
-	ds := TestDataStorage(t)
+	ds := TestDS(t)
 	// 清除数据
 	_, err := rds.Main.ClearTestData(ctx,sq.QB{
 		Table: pd.TableConsumer{},
@@ -37,11 +37,11 @@ func TestDataStorage_ConsumerHasConsumerByName(t *testing.T) {
 	assert.Equal(t, reject, nil)
 }
 
-func TestDataStorage_ConsumerCreateConsumer(t *testing.T) {
-	namespace := "TestDataStorage_ConsumerCreateConsumer" + xtest.String(10)
+func TestDS_ConsumerCreateConsumer(t *testing.T) {
+	namespace := "TestDS_ConsumerCreateConsumer" + xtest.String(10)
 	ctx := context.TODO()
 	rds := connectRDS.TestRDS(t)
-	ds := TestDataStorage(t)
+	ds := TestDS(t)
 	mock := struct {
 		NewConsumerID pd.IDConsumer
 	}{}
@@ -54,7 +54,7 @@ func TestDataStorage_ConsumerCreateConsumer(t *testing.T) {
 	}
 	// 插入数据
 	{
-		newID, err := ds.ConsumerCreateConsumer(ctx, IConsumerDataStorage.ConsumerCreateConsumer{
+		newID, err := ds.ConsumerCreateConsumer(ctx, IConsumerDS.ConsumerCreateConsumer{
 			Name: namespace,
 		})
 		mock.NewConsumerID = newID
@@ -81,11 +81,11 @@ func TestDataStorage_ConsumerCreateConsumer(t *testing.T) {
 	}
 }
 
-func TestDataStorage_ConsumerHasConsumerByID(t *testing.T) {
-	namespace := "TestDataStorage_ConsumerHasConsumerByID:" + xtest.String(10)
+func TestDS_ConsumerHasConsumerByID(t *testing.T) {
+	namespace := "TestDS_ConsumerHasConsumerByID:" + xtest.String(10)
 	ctx := context.TODO()
 	rds := connectRDS.TestRDS(t)
-	ds := TestDataStorage(t)
+	ds := TestDS(t)
 	// 清除数据
 	_, err := rds.Main.ClearTestData(ctx,sq.QB{
 		Table: pd.TableConsumer{},

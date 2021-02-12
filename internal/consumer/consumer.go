@@ -2,7 +2,7 @@ package consumerBiz
 
 import (
 	"context"
-	IConsumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
+	IConsumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
 	IConsumerBiz "github.com/goclub/project-seckilling/internal/consumer/interface"
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	replyU "github.com/goclub/project-seckilling/internal/util_reply"
@@ -20,7 +20,7 @@ func (dep Biz) ConsumerSignIn(ctx context.Context, data IConsumerBiz.ConsumerSig
 	if has {
 		return "", replyU.RejectMessage("用户名已存在", false)
 	}
-	consumerID, reject = dep.ds.ConsumerCreateConsumer(ctx, IConsumerDataStorage.ConsumerCreateConsumer{
+	consumerID, reject = dep.ds.ConsumerCreateConsumer(ctx, IConsumerDS.ConsumerCreateConsumer{
 		Name: data.Name,
 	}) ; if reject != nil {
 		return

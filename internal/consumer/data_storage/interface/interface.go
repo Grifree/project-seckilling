@@ -1,4 +1,4 @@
-package IConsumerDataStorage
+package IConsumerDS
 
 import (
 	"context"

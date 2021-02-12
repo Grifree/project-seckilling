@@ -1,21 +1,21 @@
-package consumerDataStorage
+package consumerDS
 
 import (
 	connectRDS "github.com/goclub/project-seckilling/internal/connect_rds"
-	IConsumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
+	IConsumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
 	"testing"
 )
 
-type DataStorage struct {
+type DS struct {
 	rds connectRDS.RDS
 }
 
-func NewDataStorage(rds connectRDS.RDS) IConsumerDataStorage.Interface {
-	return DataStorage{
+func NewDS(rds connectRDS.RDS) IConsumerDS.Interface {
+	return DS{
 		rds:rds,
 	}
 }
-func TestDataStorage(t *testing.T)  IConsumerDataStorage.Interface {
+func TestDS(t *testing.T)  IConsumerDS.Interface {
 	rds := connectRDS.TestRDS(t)
-	return NewDataStorage(rds)
+	return NewDS(rds)
 }

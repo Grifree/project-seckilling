@@ -1,13 +1,13 @@
-package consumerDataStorage
+package consumerDS
 
 import (
 	"context"
-	IConsumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
+	IConsumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	sq "github.com/goclub/sql"
 )
 
-func (dep DataStorage) ConsumerHasConsumerByName(ctx context.Context, name string) (has bool, reject error) {
+func (dep DS) ConsumerHasConsumerByName(ctx context.Context, name string) (has bool, reject error) {
 	consumerCol := pd.Consumer{}.Column()
 	has, reject = dep.rds.Main.Has(ctx, sq.QB{
 		Table: pd.TableConsumer{},
@@ -19,7 +19,7 @@ func (dep DataStorage) ConsumerHasConsumerByName(ctx context.Context, name strin
 	return
 }
 
-func (dep DataStorage) ConsumerCreateConsumer(ctx context.Context, data IConsumerDataStorage.ConsumerCreateConsumer) (consumerID pd.IDConsumer, reject error) {
+func (dep DS) ConsumerCreateConsumer(ctx context.Context, data IConsumerDS.ConsumerCreateConsumer) (consumerID pd.IDConsumer, reject error) {
 	consumer := pd.Consumer{
 		Name: data.Name,
 	}
@@ -29,7 +29,7 @@ func (dep DataStorage) ConsumerCreateConsumer(ctx context.Context, data IConsume
 	return consumer.ID, nil
 }
 
-func (dep DataStorage) ConsumerHasConsumerByID(ctx context.Context, id pd.IDConsumer) (has bool, reject error) {
+func (dep DS) ConsumerHasConsumerByID(ctx context.Context, id pd.IDConsumer) (has bool, reject error) {
 	consumerCol := pd.Consumer{}.Column()
 	has, reject = dep.rds.Main.Has(ctx, sq.QB{
 		Table: pd.TableConsumer{},

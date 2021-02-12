@@ -1,21 +1,21 @@
 package consumerBiz
 
 import (
-	consumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage"
-	IConsumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
+	consumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage"
+	IConsumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
 	IConsumerBiz "github.com/goclub/project-seckilling/internal/consumer/interface"
 	"testing"
 )
 
 type Biz struct {
-	ds IConsumerDataStorage.Interface
+	ds IConsumerDS.Interface
 }
-func NewBiz(ds IConsumerDataStorage.Interface) IConsumerBiz.Interface {
+func NewBiz(ds IConsumerDS.Interface) IConsumerBiz.Interface {
 	return Biz{
 		ds: ds,
 	}
 }
 
 func TestConsumer(t *testing.T) IConsumerBiz.Interface {
-	return NewBiz(consumerDataStorage.TestDataStorage(t))
+	return NewBiz(consumerDS.TestDS(t))
 }

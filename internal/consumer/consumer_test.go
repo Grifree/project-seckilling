@@ -4,8 +4,8 @@ import (
 	"context"
 	xerr "github.com/goclub/error"
 	connectRDS "github.com/goclub/project-seckilling/internal/connect_rds"
-	consumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage"
-	IConsumerDataStorage "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
+	consumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage"
+	IConsumerDS "github.com/goclub/project-seckilling/internal/consumer/data_storage/interface"
 	IConsumerBiz "github.com/goclub/project-seckilling/internal/consumer/interface"
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	replyU "github.com/goclub/project-seckilling/internal/util_reply"
@@ -19,7 +19,7 @@ func TestBiz_ConsumerSignIn(t *testing.T) {
 	namespace := "TestBiz_ConsumerSignIn:" + xtest.String(10)
 	ctx := context.TODO()
 	rds := connectRDS.TestRDS(t)
-	ds := consumerDataStorage.TestDataStorage(t)
+	ds := consumerDS.TestDS(t)
 	biz := TestConsumer(t)
 	mock := struct {
 		NewConsumerID pd.IDConsumer
@@ -64,7 +64,7 @@ func TestBiz_VerifyConsumerID(t *testing.T) {
 	namespace := "TestBiz_VerifyConsumerID:" + xtest.String(10)
 	ctx := context.TODO()
 	rds := connectRDS.TestRDS(t)
-	ds := consumerDataStorage.TestDataStorage(t)
+	ds := consumerDS.TestDS(t)
 	_=ds
 	biz := TestConsumer(t)
 	// 清除数据
@@ -77,7 +77,7 @@ func TestBiz_VerifyConsumerID(t *testing.T) {
 	err = biz.VerifyConsumerID(ctx, invalidID)
 	assert.Equal(t, err, replyU.RejectMessage("consumerID(" + invalidID.String() + ") 不存在", true))
 	// 插入数据
-	newConsumerID, err := ds.ConsumerCreateConsumer(ctx, IConsumerDataStorage.ConsumerCreateConsumer{
+	newConsumerID, err := ds.ConsumerCreateConsumer(ctx, IConsumerDS.ConsumerCreateConsumer{
 		Name: namespace,
 	})
 	assert.NoError(t ,err)
