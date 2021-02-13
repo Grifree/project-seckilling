@@ -15,6 +15,7 @@ type Biz struct {
 func NewBiz(ds IConsumerDS.Interface, ms IConsumerMS.Interface) IConsumerBiz.Interface {
 	return Biz{
 		ds: ds,
+		ms: ms,
 	}
 }
 

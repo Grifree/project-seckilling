@@ -31,6 +31,8 @@ github.com/goclub/time v0.0.0-20201218085221-ad01cef803d3 h1:70UivKcr6+JfYuUz/ra
 github.com/goclub/time v0.0.0-20201218085221-ad01cef803d3/go.mod h1:ubQiIzvf3qBw+a+J5563Rpf3yq2UvsVQzESGdg1rR4A=
 github.com/goclub/validator v0.0.0-20210211052809-9b6db9b065a2 h1:71kW8byaK476nUzEtjYWIIy394ZP/q6OIZfAtAtZTGk=
 github.com/goclub/validator v0.0.0-20210211052809-9b6db9b065a2/go.mod h1:w89NDRfR3hE/7qHwV+1MmwYf1AEvPYJgPKvjrWN5zAo=
+github.com/goclub/validator v0.0.0-20210212061642-ccc13128f056 h1:5vFh4p/ww6h1mLBrR19USPUgHiDI3ejrtOOnNWXso40=
+github.com/goclub/validator v0.0.0-20210212061642-ccc13128f056/go.mod h1:pkKqUwgglI0KYneICyxcoKvwdEWkZJSG7SsbxfuYLqg=
 github.com/google/go-querystring v1.0.0/go.mod h1:odCYkC5MyYFN7vkCjXpyrEuKhc/BUO6wN/zVPAxq5ck=
 github.com/google/uuid v1.1.4 h1:0ecGp3skIrHWPNGPJDaBIghfA6Sp7Ruo2Io8eLKzWm0=
 github.com/google/uuid v1.1.4/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

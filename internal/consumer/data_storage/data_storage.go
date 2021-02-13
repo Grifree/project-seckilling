@@ -15,6 +15,8 @@ func NewDS(rds connectRDS.RDS) IConsumerDS.Interface {
 		rds:rds,
 	}
 }
+
+
 func TestDS(t *testing.T)  IConsumerDS.Interface {
 	rds := connectRDS.TestRDS(t)
 	return NewDS(rds)

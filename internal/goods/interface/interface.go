@@ -15,7 +15,6 @@ type Interface interface {
 	ConsumerGoods(ctx context.Context, goodsID pd.IDGoods) (goods ConsumerGoodsReply, reject error)
 
 	OwnershipGoodsByMerchantID(ctx context.Context, goodsID pd.IDGoods, merchantID pd.IDMerchant) (reject error)
-	ConsumerGoodsInventory(ctx context.Context, goodsID pd.IDGoods, consumer pd.IDConsumer) (inventory uint, reject error)
 
 }
 
