@@ -10,6 +10,7 @@ import (
 func (dep Biz) ConsumerGoods(ctx context.Context, goodsID pd.IDGoods) (goods IGoodsBiz.ConsumerGoodsReply, reject error) {
 	// 合法性验证:暂无
 	// 读取数据
+	// 为了降低压力 读取 redis 数据
 	data, reject := dep.ms.GoodsGet(ctx, goodsID) ; if reject != nil {
 		return
 	}
@@ -20,6 +21,7 @@ func (dep Biz) ConsumerGoods(ctx context.Context, goodsID pd.IDGoods) (goods IGo
 		StartTime: xtime.NewChinaTime(data.StartTime),
 		EndTime: xtime.NewChinaTime(data.EndTime),
 		QuantityLimitPerPerson: data.QuantityLimitPerPerson,
+		Inventory: data.Inventory,
 	}
 	return
 }

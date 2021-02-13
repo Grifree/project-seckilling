@@ -87,6 +87,7 @@ type MerchantGoodsListReplyItem struct {
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
+	Inventory uint
 	CreateAt time.Time
 	UpdateAt time.Time
 }
@@ -97,4 +98,5 @@ type ConsumerGoodsReply struct {
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
+	Inventory uint
 }

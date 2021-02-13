@@ -75,12 +75,13 @@ func (dep Biz) MerchantGoodsUpdate(ctx context.Context, data IGoodsBiz.MerchantG
 		StartTime: update.StartTime,
 		EndTime: update.EndTime,
 		QuantityLimitPerPerson: update.QuantityLimitPerPerson,
+		Inventory: update.Inventory,
 	}) ; if reject != nil {
 		return
 	}
 	// 将数据写入缓存
 	return
 }
-func (dep Biz) MerchantGoodsList(ctx context.Context, data IGoodsBiz.MerchantGoodsList, merchantID pd.IDMerchant) (goodsList IGoodsBiz.MerchantGoodsListReply, reject error) {
-
-}
+// func (dep Biz) MerchantGoodsList(ctx context.Context, data IGoodsBiz.MerchantGoodsList, merchantID pd.IDMerchant) (goodsList IGoodsBiz.MerchantGoodsListReply, reject error) {
+//
+// }
