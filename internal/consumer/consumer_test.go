@@ -30,7 +30,7 @@ func TestBiz_ConsumerSignIn(t *testing.T) {
 		Where: sq.And(pd.Consumer{}.Column().Name, sq.LikeLeft(namespace)),
 	}) ; if err != nil {panic(err)}
 	// 查询 不存在
-	has, reject := ds.ConsumerHasConsumerByName(ctx, namespace)
+	has, reject := ds.HasConsumerByName(ctx, namespace)
 	assert.Equal(t, has, false)
 	assert.Equal(t, reject, nil)
 	// 注册
@@ -41,7 +41,7 @@ func TestBiz_ConsumerSignIn(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, len(mock.NewConsumerID), 36)
 	// 查询 存在
-	has, reject = ds.ConsumerHasConsumerByName(ctx, namespace)
+	has, reject = ds.HasConsumerByName(ctx, namespace)
 	assert.Equal(t, has, true)
 	assert.Equal(t, reject, nil)
 	// 重复注册
@@ -77,7 +77,7 @@ func TestBiz_VerifyConsumerID(t *testing.T) {
 	err = biz.VerifyConsumerID(ctx, invalidID)
 	assert.Equal(t, err, replyU.RejectMessage("consumerID(" + invalidID.String() + ") 不存在", true))
 	// 插入数据
-	newConsumerID, err := ds.ConsumerCreateConsumer(ctx, IConsumerDS.ConsumerCreateConsumer{
+	newConsumerID, err := ds.CreateConsumer(ctx, IConsumerDS.CreateConsumer{
 		Name: namespace,
 	})
 	assert.NoError(t ,err)

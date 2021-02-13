@@ -7,6 +7,7 @@ import (
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	replyU "github.com/goclub/project-seckilling/internal/util_reply"
 	reqU "github.com/goclub/project-seckilling/internal/util_request"
+	"time"
 )
 
 func (dep Biz) ConsumerSignIn(ctx context.Context, data IConsumerBiz.ConsumerSignIn) (consumerID pd.IDConsumer, reject error) {
@@ -14,16 +15,33 @@ func (dep Biz) ConsumerSignIn(ctx context.Context, data IConsumerBiz.ConsumerSig
 	reject = reqU.Check(data) ; if reject != nil {
 		return
 	}
-	has, reject := dep.ds.ConsumerHasConsumerByName(ctx, data.Name) ; if reject != nil {
+	// 查询重名
+	has, reject := dep.ds.HasConsumerByName(ctx, data.Name) ; if reject != nil {
 		return
 	}
 	if has {
 		return "", replyU.RejectMessage("用户名已存在", false)
 	}
-	consumerID, reject = dep.ds.ConsumerCreateConsumer(ctx, IConsumerDS.ConsumerCreateConsumer{
-		Name: data.Name,
-	}) ; if reject != nil {
+	ok, unlock, reject := dep.ms.LockConsumerCreateName(data.Name, time.Second * 10) ; if reject != nil {
 		return
+	}
+	unlockCtx, cancelCtx := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancelCtx()
+	if ok == false {
+		return "", replyU.RejectMessage("用户名已存在", false)
+	}
+	// 有可能以后允许出现重名用户，所以不在 sql 做 unique 约束
+	var execUnlock = func() error {
+		return unlock(unlockCtx)
+	}
+	var isRollback bool
+	consumerID,isRollback, reject = dep.ds.CreateConsumer(ctx, IConsumerDS.CreateConsumer{
+		Name: data.Name,
+	}, execUnlock) ; if reject != nil {
+		return
+	}
+	if isRollback == false {
+		return "", replyU.RejectMessage("用户名已存在或其他错误", false)
 	}
 	return
 }

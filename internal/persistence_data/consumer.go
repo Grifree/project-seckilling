@@ -10,7 +10,6 @@ type TableConsumer struct {
 func (TableConsumer) TableName() string {
 	return "consumer"
 }
-
 func (TableConsumer) Column() (col struct{
 	ID sq.Column
 	Name sq.Column

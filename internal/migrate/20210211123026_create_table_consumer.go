@@ -7,7 +7,7 @@ func (Main) Migrate20210211123026_create_table_consumer(mi sq.Migrate) {
 		TableName: "consumer",
 		PrimaryKey: []string{"id"},
 		Fields: append([]sq.MigrateField{
-			mi.Field("id").Char(36).DefaultString(""),
+			mi.Field("id").Char(36),
 			mi.Field("name").Varchar(255).DefaultString(""),
 		}, mi.CUDTimestamp()...),
 		Key: map[string][]string{

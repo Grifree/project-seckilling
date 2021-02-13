@@ -6,10 +6,10 @@ import (
 )
 
 type Interface interface {
-	ConsumerHasConsumerByName(ctx context.Context, name string) (has bool, reject error)
-	ConsumerCreateConsumer(ctx context.Context, data ConsumerCreateConsumer) (consumerID pd.IDConsumer, reject error)
+	HasConsumerByName(ctx context.Context, name string) (has bool, reject error)
+	CreateConsumer(ctx context.Context, data CreateConsumer, execUnlock func() error) (consumerID pd.IDConsumer, isRollback bool, reject error)
 	ConsumerHasConsumerByID(ctx context.Context, consumerID pd.IDConsumer) (has bool, reject error)
 }
-type ConsumerCreateConsumer struct {
+type CreateConsumer struct {
 	Name string
 }

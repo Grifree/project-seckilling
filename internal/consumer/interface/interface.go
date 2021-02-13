@@ -10,6 +10,7 @@ type Interface interface {
 	ConsumerSignIn(ctx context.Context, data ConsumerSignIn) (consumerID pd.IDConsumer, reject error)
 	VerifyConsumerID(ctx context.Context, consumerID pd.IDConsumer) (reject error)
 }
+// 为了将重点放在秒杀商品，暂时不需要注册时候输入手机号和密码
 type ConsumerSignIn struct {
 	Name string
 }
