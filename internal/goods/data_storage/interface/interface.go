@@ -18,7 +18,7 @@ type Interface interface {
 type GoodsCreate struct {
 	MerchantID pd.IDMerchant
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime time.Time
 	EndTime time.Time
@@ -28,7 +28,7 @@ type GoodsCreate struct {
 type GoodsUpdate struct {
 	GoodsID pd.IDGoods
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime time.Time
 	EndTime time.Time

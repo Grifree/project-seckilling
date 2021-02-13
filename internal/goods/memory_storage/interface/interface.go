@@ -16,7 +16,7 @@ type GoodsSet struct {
 	MerchantID pd.IDMerchant
 	GoodsID pd.IDGoods
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime time.Time
 	EndTime time.Time

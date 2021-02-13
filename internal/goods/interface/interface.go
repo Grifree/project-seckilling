@@ -21,7 +21,7 @@ type Interface interface {
 
 type MerchantGoodsCreate struct {
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
@@ -30,7 +30,7 @@ type MerchantGoodsCreate struct {
 }
 func (v MerchantGoodsCreate) VD(r *vd.Rule) {
 	r.String(v.Title, vd.StringSpec{Name:"商品标题"})
-	r.Uint64(v.Price, vd.IntSpec{Name:"单价"})
+	r.Uint64(v.PriceCent, vd.IntSpec{Name:"单价"})
 	r.String(v.Description, vd.StringSpec{Name:"描述"})
 	r.TimeRange(vd.TimeRange{
 		"开始时间",v.StartTime.Time, "结束时间", v.EndTime.Time,
@@ -43,7 +43,7 @@ func (v MerchantGoodsCreate) VD(r *vd.Rule) {
 type MerchantGoodsUpdate struct {
 	GoodsID pd.IDGoods
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
@@ -57,7 +57,7 @@ func (v MerchantGoodsUpdate) VD(r *vd.Rule) {
 		Ext: []vd.StringSpec{vd.UUID()},
 	})
 	r.String(v.Title, vd.StringSpec{Name:"商品标题"})
-	r.Uint64(v.Price, vd.IntSpec{Name:"单价"})
+	r.Uint64(v.PriceCent, vd.IntSpec{Name:"单价"})
 	r.String(v.Description, vd.StringSpec{Name:"描述"})
 	r.TimeRange(vd.TimeRange{
 		"开始时间",v.StartTime.Time, "结束时间", v.EndTime.Time,
@@ -82,7 +82,7 @@ type MerchantGoodsListReply struct {
 }
 type MerchantGoodsListReplyItem struct {
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
@@ -93,7 +93,7 @@ type MerchantGoodsListReplyItem struct {
 }
 type ConsumerGoodsReply struct {
 	Title string
-	Price uint64
+	PriceCent uint64
 	Description string
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime

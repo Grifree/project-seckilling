@@ -10,7 +10,7 @@ type Goods struct {
 	MerchantID pd.IDMerchant `red:"merchant_id"`
 	GoodsID pd.IDGoods `red:"goods_id"`
 	Title string `red:"title"`
-	Price uint64 `red:"price"`
+	PriceCent uint64 `red:"price_cent"`
 	Description string `red:"description"`
 	StartTime time.Time `red:"start_time"`
 	EndTime time.Time `red:"end_time"`

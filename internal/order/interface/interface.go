@@ -9,7 +9,7 @@ import (
 type Interface interface {
 	ConsumerPlaceOrder(ctx context.Context, data ConsumerPlaceOrder) (ticketID md.IDTicket, reject error)
 	ConsumerQueryTicket(ctx context.Context, data ConsumerQueryTicket) (reply ConsumerQueryTicketReply, reject error)
-	ConsumerOrderList(ctx context.Context, data ConsumerOrderList)(orderList ConsumerOrderListReply, reject error)
+	// ConsumerOrderList(ctx context.Context, data ConsumerOrderList)(orderList ConsumerOrderListReply, reject error)
 	JobCancelUnpaidOrder(ctx context.Context) (reject error)
 }
 

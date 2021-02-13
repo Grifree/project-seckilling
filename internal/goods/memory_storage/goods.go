@@ -13,7 +13,7 @@ func (dep MemoryStorage) GoodsSet(ctx context.Context, data IGoodsMS.GoodsSet) (
 		MerchantID: data.MerchantID,
 		GoodsID: data.GoodsID,
 		Title: data.Title,
-		Price: data.Price,
+		PriceCent: data.PriceCent,
 		Description: data.Description,
 		StartTime: data.StartTime,
 		EndTime: data.EndTime,

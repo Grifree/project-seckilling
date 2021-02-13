@@ -16,7 +16,7 @@ func (dep Biz) ConsumerGoods(ctx context.Context, goodsID pd.IDGoods) (goods IGo
 	}
 	goods = IGoodsBiz.ConsumerGoodsReply{
 		Title: data.Title,
-		Price: data.Price,
+		PriceCent: data.PriceCent,
 		Description: data.Description,
 		StartTime: xtime.NewChinaTime(data.StartTime),
 		EndTime: xtime.NewChinaTime(data.EndTime),
@@ -25,3 +25,4 @@ func (dep Biz) ConsumerGoods(ctx context.Context, goodsID pd.IDGoods) (goods IGo
 	}
 	return
 }
+
