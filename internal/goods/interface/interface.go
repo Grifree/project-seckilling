@@ -11,10 +11,12 @@ import (
 type Interface interface {
 	MerchantGoodsCreate(ctx context.Context, data MerchantGoodsCreate, merchantID pd.IDMerchant) (id pd.IDGoods, reject error)
 	MerchantGoodsUpdate(ctx context.Context, data MerchantGoodsUpdate, merchantID pd.IDMerchant) (reject error)
-	MerchantGoodsList(ctx context.Context, data MerchantGoodsList, merchantID pd.IDMerchant) (goodsList MerchantGoodsListReply, reject error)
-	ConsumerGoods(ctx context.Context, consumerID pd.IDConsumer) (goods ConsumerGoodsReply, reject error)
+	// MerchantGoodsList(ctx context.Context, data MerchantGoodsList, merchantID pd.IDMerchant) (goodsList MerchantGoodsListReply, reject error)
+	ConsumerGoods(ctx context.Context, goodsID pd.IDGoods) (goods ConsumerGoodsReply, reject error)
 
 	OwnershipGoodsByMerchantID(ctx context.Context, goodsID pd.IDGoods, merchantID pd.IDMerchant) (reject error)
+	ConsumerGoodsInventory(ctx context.Context, goodsID pd.IDGoods, consumer pd.IDConsumer) (inventory uint, reject error)
+
 }
 
 type MerchantGoodsCreate struct {
@@ -24,6 +26,7 @@ type MerchantGoodsCreate struct {
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
+	Inventory uint
 }
 func (v MerchantGoodsCreate) VD(r *vd.Rule) {
 	r.String(v.Title, vd.StringSpec{Name:"商品标题"})
@@ -45,6 +48,7 @@ type MerchantGoodsUpdate struct {
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
+	Inventory uint
 }
 
 func (v MerchantGoodsUpdate) VD(r *vd.Rule) {
@@ -64,8 +68,13 @@ func (v MerchantGoodsUpdate) VD(r *vd.Rule) {
 	})
 }
 type MerchantGoodsList struct {
+	Search MerchantGoodsListSearch
 	Page uint
 	PerPage uint
+}
+type MerchantGoodsListSearch struct {
+	Title string
+	Description string
 }
 type MerchantGoodsListReply struct {
 	Items []MerchantGoodsListReplyItem
@@ -88,6 +97,4 @@ type ConsumerGoodsReply struct {
 	StartTime xtime.ChinaTime
 	EndTime xtime.ChinaTime
 	QuantityLimitPerPerson uint
-	CreateAt time.Time
-	UpdateAt time.Time
 }

@@ -3,17 +3,19 @@ package md
 import (
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	"strings"
+	"time"
 )
 
 type Goods struct {
-	MerchantID pd.IDMerchant `redis:"merchant_id"`
-	GoodsID pd.IDGoods `redis:"goods_id"`
-	Title string `redis:"title"`
-	Price uint64 `redis:"price"`
-	Description string `redis:"description"`
-	// StartTime time.Time
-	// EndTime time.Time
-	QuantityLimitPerPerson uint `redis:"quantity_limit_per_person"`
+	MerchantID pd.IDMerchant `red:"merchant_id"`
+	GoodsID pd.IDGoods `red:"goods_id"`
+	Title string `red:"title"`
+	Price uint64 `red:"price"`
+	Description string `red:"description"`
+	StartTime time.Time `red:"start_time"`
+	EndTime time.Time `red:"end_time"`
+	QuantityLimitPerPerson uint `red:"quantity_limit_per_person"`
+	Inventory uint `red:"inventory"`
 }
 func (data Goods) RedisKey () string {
 	return strings.Join([]string{"goods", data.GoodsID.String()}, ":")

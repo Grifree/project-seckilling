@@ -7,7 +7,6 @@ import (
 	IGoodsMS "github.com/goclub/project-seckilling/internal/goods/memory_storage/interface"
 	pd "github.com/goclub/project-seckilling/internal/persistence_data"
 	reqU "github.com/goclub/project-seckilling/internal/util_request"
-	"github.com/henrylee2cn/goutil/calendar"
 )
 
 func (dep Biz) MerchantGoodsCreate(ctx context.Context, data IGoodsBiz.MerchantGoodsCreate, merchantID pd.IDMerchant) (goodsID pd.IDGoods, reject error) {
@@ -17,7 +16,7 @@ func (dep Biz) MerchantGoodsCreate(ctx context.Context, data IGoodsBiz.MerchantG
 	}
 	// 合法性验证：暂无
 	// 插入数据
-	goodsID, reject = dep.ds.GoodsCreate(ctx, IGoodsDS.GoodsCreate{
+	create := IGoodsDS.GoodsCreate{
 		MerchantID: merchantID,
 		Title: data.Title,
 		Price: data.Price,
@@ -25,6 +24,20 @@ func (dep Biz) MerchantGoodsCreate(ctx context.Context, data IGoodsBiz.MerchantG
 		StartTime: data.StartTime.Time,
 		EndTime: data.EndTime.Time,
 		QuantityLimitPerPerson: data.QuantityLimitPerPerson,
+		Inventory: data.Inventory,
+	}
+	goodsID, reject = dep.ds.GoodsCreate(ctx, create) ; if reject != nil {
+		return
+	}
+	reject = dep.ms.GoodsSet(ctx,IGoodsMS.GoodsSet{
+		MerchantID: merchantID,
+		GoodsID: goodsID,
+		Title: create.Title,
+		Price: create.Price,
+		Description: create.Description,
+		StartTime: create.StartTime,
+		EndTime: create.EndTime,
+		QuantityLimitPerPerson: create.QuantityLimitPerPerson,
 	}) ; if reject != nil {
 		return
 	}
@@ -48,6 +61,7 @@ func (dep Biz) MerchantGoodsUpdate(ctx context.Context, data IGoodsBiz.MerchantG
 		StartTime: data.StartTime.Time,
 		EndTime: data.EndTime.Time,
 		QuantityLimitPerPerson: data.QuantityLimitPerPerson,
+		Inventory: data.Inventory,
 	}
 	reject = dep.ds.GoodsUpdate(ctx,update) ; if reject != nil {
 		return
