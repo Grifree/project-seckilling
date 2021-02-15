@@ -77,11 +77,10 @@ func TestBiz_VerifyConsumerID(t *testing.T) {
 	err = biz.VerifyConsumerID(ctx, invalidID)
 	assert.Equal(t, err, replyU.RejectMessage("consumerID(" + invalidID.String() + ") 不存在", true))
 	// 插入数据
-	newConsumerID,isRollback, err := ds.CreateConsumer(ctx, IConsumerDS.CreateConsumer{
+	newConsumerID, err := ds.CreateConsumer(ctx, IConsumerDS.CreateConsumer{
 		Name: namespace,
-	}, func() error {return nil})
+	})
 	assert.NoError(t ,err)
-	assert.Equal(t, isRollback, false)
 	// 查询正确id
 	err = biz.VerifyConsumerID(ctx, newConsumerID)
 	assert.NoError(t, err)
