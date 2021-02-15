@@ -26,7 +26,7 @@ func (dep Biz) ConsumerSignIn(ctx context.Context, data IConsumerBiz.ConsumerSig
 		}
 	}
 	// 创建占锁
-	ok, unlock, reject := dep.ms.LockConsumerCreateName(data.Name, time.Minute * 10) ; if reject != nil {
+	ok, unlock, reject := dep.ms.LockConsumerCreateName(ctx, data.Name, time.Minute * 10) ; if reject != nil {
 		return
 	};if ok == false {
 		return "", replyU.RejectMessage("用户名已存在", false)
