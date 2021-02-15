@@ -9,8 +9,14 @@ import (
 	"path"
 )
 
+type ConfigKVDS struct {
+	Network string `yaml:"network"`
+	Port string `yaml:"port"`
+	Host string `yaml:"host"`
+}
 type Config struct {
 	RDS sq.DataSource `yaml:"rds"`
+	KVDS ConfigKVDS `yaml:"kvds"`
 }
 func NewConfig () (config Config, err error) {
 	gopath := os.Getenv("GOPATH")
